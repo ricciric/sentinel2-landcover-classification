@@ -13,13 +13,17 @@ Experimenting on the ControlNet to guide the generation of the images via Stable
 ## Area of study
 
 A little agricultural area near Rome, defined by:
-'''json
+'''
+json
 {"type":"Polygon","coordinates":[[[12.120752,41.996881],[12.147274,41.983548],[12.12719,41.962043],[12.096119,41.978826],[12.120752,41.996881]]]}
+'''
 
 ## Output
 
 - **True Color: Consistent generation and photorealistic, represent the structures of the original vegetation accurately**
 - **False Color: Less readable due to the artistic color used**
 - **NDVI: Strong spatial control, abstract aesthetic but great to isolate the vegetation zones**
+
+---
 
 ## Objective of the Phase 2
