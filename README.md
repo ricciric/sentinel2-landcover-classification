@@ -67,15 +67,26 @@ The model reached a pixel accuracy of ~90% and stable IoU after 40 epochs.
 
 ### Partial Fine-tuning of the head and the layer 4
 
-![Training Curves](/figures/curves_2.png)
+![Training Curves](/figures/Curve_3.png)
 
 The accuracy during the partial fine-tuning is even higher as expected.
 
 ---
 
+### Results
+
+Here I show an example of a really hard mask positioned in Malaysia:
+![Example](/figures/Figure_5.png)
+
+- Left: The image given as input to the model
+- Center: The actual mask of the image
+- Right: The predicted mask from the model
+
+As we can see the original mask is hugely more granular than the predicted one.
+
 ## Future updates
 
-To improve the results, I need to expand the data avaiable of a different area with different ground features, for now the selected area is only around Rome.
+To improve the results, I'd like to do a full training of the architecture.
 
 ## ✍️ Author
 

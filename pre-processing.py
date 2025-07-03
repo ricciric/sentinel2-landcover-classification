@@ -17,7 +17,7 @@ os.makedirs(os.path.join(output_dir, 'masks'), exist_ok=True)
 # Patching function
 def patcher(image_src, mask_src, patch_size, output_dir):
     width, height = image_src.width, image_src.height
-    patch_id = 0
+    patch_id = 100 # Last 199
     
     # for loop to scroll the image on windows of size patch_size x patch_size
     for top in range(0, height, patch_size):

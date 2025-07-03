@@ -84,13 +84,13 @@ def main():
 
 
     # Training loop
-    epochs = 30
+    epochs = 50
     unfreeze_layer4 = True
     for epoch in range(epochs):
         
  
         # Progressive fine-tuning
-        if epoch == 10 and unfreeze_layer4:  # Unfreeze backbone of layer 4 after 10 epochs
+        if epoch == 20 and unfreeze_layer4:  # Unfreeze backbone of layer 4 after 10 epochs
             print("Unlocking backbone layers for layer4 fine-tuning...")
             for param in model.backbone.layer4.parameters():
                 param.requires_grad = True
