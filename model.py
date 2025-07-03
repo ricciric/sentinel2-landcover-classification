@@ -84,17 +84,18 @@ def main():
 
 
     # Training loop
-    epochs = 40
+    epochs = 30
+    unfreeze_layer4 = True
     for epoch in range(epochs):
         
-        '''
+ 
         # Progressive fine-tuning
-        if epoch == 10:  # Unfreeze backbone after 10 epochs
+        if epoch == 10 and unfreeze_layer4:  # Unfreeze backbone of layer 4 after 10 epochs
             print("Unlocking backbone layers for layer4 fine-tuning...")
             for param in model.backbone.layer4.parameters():
                 param.requires_grad = True
             optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=1e-4)  # nuovo LR
-        '''
+
         model.train()
         epoch_loss = 0.0
         
@@ -128,7 +129,8 @@ def main():
             f"Pixel Acc: {pixel_accuracy:.4f} | IoU: {iou:.4f}")
 
     # Save the model
-    torch.save(model.state_dict(), "model_state/finetuned_unet_scl.pth")
+    model_n = 2
+    torch.save(model.state_dict(), f"model_state/finetuned_unet_scl_{model_n}.pth")
     print("Model saved to model_state/finetuned_unet_scl.pth")
     # -------------------------
     #     Curves plotting
@@ -145,6 +147,10 @@ def main():
     plt.subplot(1,2,2)
     plt.plot(val_accuracy, label='Pixel Accuracy')
     plt.plot(val_ious, label='IoU')
+    
+    if unfreeze_layer4:
+        plt.axvline(x=10, color='green', linestyle='--', label='Unfreeze Layer4')
+
     plt.xlabel('Epoch')
     plt.ylabel('Metric')
     plt.legend()
